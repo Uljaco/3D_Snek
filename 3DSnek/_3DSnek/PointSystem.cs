@@ -12,7 +12,7 @@ namespace _3DSnek
 
         ///Mostly optional work after we get everything else working
         ///Would be called from our visual output manager class
- 
+
         /// <summary>
         /// Display score in the sky behind the box, or wherever.
         /// </summary>
