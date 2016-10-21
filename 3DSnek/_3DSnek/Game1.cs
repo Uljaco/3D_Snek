@@ -36,6 +36,12 @@ namespace _3DSnek
             // TODO: Add your initialization logic here
 
             base.Initialize();
+            //Just making sure everything is connected correctly and the classes are instantiate-able
+            ColllisionDetector collisionDetector = new ColllisionDetector();
+            InputManager inputManager = new InputManager();
+            Player player = new Player();
+            PointSystem pointSystem = new PointSystem();
+            VisualOutputManager visualOutputManager = new VisualOutputManager();//what are internal classes
         }
 
         /// <summary>
