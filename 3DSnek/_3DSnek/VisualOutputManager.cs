@@ -8,17 +8,17 @@ using System.Text;
 
 namespace _3DSnek
 {
-    class VisualOutputManager
+    public class VisualOutputManager
     {
         private ContentManager Content;
         private GraphicsDeviceManager graphics;
         private float aspectRatio;
         //private SpriteBatch spriteBatch;//Will only need if we want 2D text/images to be displayed
 
-        private Model snekTextModel, snekTextSquareModel, snakeHeadModel;
+        private Model snekTextModel, snekTextSquareModel, snakeHeadModel, arenaModel;
 
         private Vector3 cameraPosition, cameraLookAt;
-        private float rotation = 0f;
+        private float rotation = 0f;//just for testing
 
         public VisualOutputManager(GraphicsDeviceManager gdm, ContentManager content)
         {
@@ -42,13 +42,15 @@ namespace _3DSnek
             snekTextModel = Content.Load<Model>("Models/3DSnekText");
             snekTextSquareModel = Content.Load<Model>("Models/3DSnekSquareText");
             snakeHeadModel = Content.Load<Model>("Models/snakeHead");
+            arenaModel = Content.Load<Model>("Models/arena");
         }
 
-        public void draw()
+        public void draw(GameTime gameTime)
         {
             graphics.GraphicsDevice.Clear(Color.Aquamarine);//Set background color
-            drawModel(snakeHeadModel, Vector3.Zero, rotation+=.05f, Color.BlanchedAlmond.ToVector3());
+            drawModel(snakeHeadModel, Vector3.Zero, rotation += .05f, Color.Yellow.ToVector3());// Color.BlanchedAlmond.ToVector3());
             drawModel(snekTextSquareModel, Vector3.Zero, Color.BlanchedAlmond.ToVector3());
+            drawModel(arenaModel, Vector3.Zero, Color.White.ToVector3());
         }
 
         private void drawModel(Model model, Vector3 modelPosition, Vector3 color)

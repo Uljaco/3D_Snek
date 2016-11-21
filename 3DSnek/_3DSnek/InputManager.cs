@@ -21,7 +21,7 @@ namespace _3DSnek
         private void handleMotionControl(Player player)
         {
             KeyboardState keyboardState = Keyboard.GetState();
-
+            //Just turning left and right -> Just A and D keys?
         }
 
         /// <summary>
