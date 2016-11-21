@@ -15,9 +15,10 @@ namespace _3DSnek
         private float aspectRatio;
         //private SpriteBatch spriteBatch;//Will only need if we want 2D text/images to be displayed
 
-        private Model snekTextModel, snekTextSquareModel;
+        private Model snekTextModel, snekTextSquareModel, snakeHeadModel;
 
         private Vector3 cameraPosition, cameraLookAt;
+        private float rotation = 0f;
 
         public VisualOutputManager(GraphicsDeviceManager gdm, ContentManager content)
         {
@@ -37,13 +38,16 @@ namespace _3DSnek
 
         private void loadModels()
         {
+            //Load models in for future rendering.
             snekTextModel = Content.Load<Model>("Models/3DSnekText");
             snekTextSquareModel = Content.Load<Model>("Models/3DSnekSquareText");
+            snakeHeadModel = Content.Load<Model>("Models/snakeHead");
         }
 
         public void draw()
         {
             graphics.GraphicsDevice.Clear(Color.Aquamarine);//Set background color
+            drawModel(snakeHeadModel, Vector3.Zero, rotation+=.05f, Color.BlanchedAlmond.ToVector3());
             drawModel(snekTextSquareModel, Vector3.Zero, Color.BlanchedAlmond.ToVector3());
         }
 
@@ -62,6 +66,32 @@ namespace _3DSnek
                     effect.DiffuseColor = color;
                     effect.DirectionalLight0.Direction = new Vector3(0f, 0.0f, 0.0f);
                     effect.World = transforms[mesh.ParentBone.Index] * Matrix.CreateTranslation(modelPosition);//change the position of the model in the world
+                    effect.View = Matrix.CreateLookAt(cameraPosition, cameraLookAt, Vector3.Up); //change the position and direction of the camera
+                    effect.Projection = Matrix.CreatePerspectiveFieldOfView(
+                        MathHelper.ToRadians(45.0f), aspectRatio,
+                        1.0f, 10000.0f);//control how the view of the 3D world is turned into a 2D image
+                }
+                // Draw the mesh, using the effects set above.
+                mesh.Draw();
+            }
+        }
+        private void drawModel(Model model, Vector3 modelPosition, float rotation, Vector3 color)
+        {
+            // Copy any parent transforms.
+            Matrix[] transforms = new Matrix[model.Bones.Count];
+            model.CopyAbsoluteBoneTransformsTo(transforms);
+            foreach (ModelMesh mesh in model.Meshes)
+            {
+                // This is where the mesh orientation is set, as well 
+                // as our camera and projection.
+                foreach (BasicEffect effect in mesh.Effects)
+                {   //TO-DO: precalculate anything that does not change
+                    effect.EnableDefaultLighting();
+                    effect.DiffuseColor = color;
+                    effect.DirectionalLight0.Direction = new Vector3(0f, 0.0f, 0.0f);
+                    effect.World = transforms[mesh.ParentBone.Index] 
+                        * Matrix.CreateRotationY(rotation)
+                        * Matrix.CreateTranslation(modelPosition);//change the position of the model in the world
                     effect.View = Matrix.CreateLookAt(cameraPosition, cameraLookAt, Vector3.Up); //change the position and direction of the camera
                     effect.Projection = Matrix.CreatePerspectiveFieldOfView(
                         MathHelper.ToRadians(45.0f), aspectRatio,
