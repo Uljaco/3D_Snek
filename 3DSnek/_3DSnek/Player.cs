@@ -15,6 +15,11 @@ namespace _3DSnek
         Vector3 currentDirection;   //player's current velocity/motion vector
         //int tailLength? just tail.length
 
+        public Player()
+        {
+            //Player spawns in middle of map
+        }
+
     }
 
     class TailPiece

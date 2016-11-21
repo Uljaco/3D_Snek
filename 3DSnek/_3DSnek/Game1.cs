@@ -17,7 +17,11 @@ namespace _3DSnek
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        ColllisionDetector collisionDetector;
+        InputManager inputManager;
+        Player player;
+        VisualOutputManager visualOutputManager;
+        PointSystem pointSystem;
 
         public Game1()
         {
@@ -34,14 +38,13 @@ namespace _3DSnek
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
             base.Initialize();
-            //Just making sure everything is connected correctly and the classes are instantiate-able
-            ColllisionDetector collisionDetector = new ColllisionDetector();
-            InputManager inputManager = new InputManager();
-            Player player = new Player();
-            PointSystem pointSystem = new PointSystem();
-            VisualOutputManager visualOutputManager = new VisualOutputManager();//what are internal classes
+
+            collisionDetector = new ColllisionDetector();
+            inputManager = new InputManager();
+            player = new Player();
+            pointSystem = new PointSystem();
+            visualOutputManager = new VisualOutputManager(graphics, Content);
         }
 
         /// <summary>
@@ -50,8 +53,6 @@ namespace _3DSnek
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
         }
@@ -90,6 +91,7 @@ namespace _3DSnek
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            visualOutputManager.draw();
 
             base.Draw(gameTime);
         }
