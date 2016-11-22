@@ -8,28 +8,64 @@ namespace _3DSnek
 {
     public class Player
     {
-        Vector3 coords { get; set; }   //xyz coordinates, maybe just need xy if we keep z uniform, but keeping in 3d vector might make it easier to compute?
+        public Vector3 coords { get; set; }   //xyz coordinates, maybe just need xz if we keep y uniform, but keeping in 3d vector might make it easier to compute?
         LinkedList<TailPiece> tail { get; } //contains the player's recent previous locations (which are the current locations of the tail)
         //TailPiece as opposed to just xy coordinates because we might want to make different tail pieces appear differently
         //but maybe even then we could use just xy and implement the different appearance as function of how long the tail is to begin with
         Vector3 currentDirection { get; set; }   //player's current velocity/motion vector
         //int tailLength? just tail.length
 
-        public Player()
+        public Player(Bounds bounds)
         {
-            //Player spawns in middle of map
+            //Player spawns in middle of map (within bounds)
             coords = Vector3.Zero;
-            //Console.Out.WriteLine("tail:" + tail);
+            currentDirection = Vector3.Backward;
         }
 
-        public void move(Vector3 movementVector)
+        public void move()//Vector3 movementVector)
         {
             //update player and tail coordinates
+            coords += currentDirection * 100;//replace 100 with a factor that will be used uniformly across the class for clear 
+                                            //the 100 represents the size of one spot in the grid
         }
 
-        public void changeDirection(Vector3 newDirection)
+        public void changeDirection(bool toLeft)//if not to the left, then it is to the right (can only change direction in 2 ways L/R)
         {
-            currentDirection = newDirection;
+            if (toLeft)//if turning LEFT
+            {
+                if (currentDirection.Equals(Vector3.Backward))
+                {
+                    currentDirection = Vector3.Right;
+                }else if (currentDirection.Equals(Vector3.Forward))
+                {
+                    currentDirection = Vector3.Left;
+                }else if (currentDirection.Equals(Vector3.Left))
+                {
+                    currentDirection = Vector3.Backward;
+                }else if (currentDirection.Equals(Vector3.Right))
+                {
+                    currentDirection = Vector3.Forward;
+                }
+            }
+            else//if turning RIGHT
+            {
+                if (currentDirection.Equals(Vector3.Backward))
+                {
+                    currentDirection = Vector3.Left;
+                }
+                else if (currentDirection.Equals(Vector3.Forward))
+                {
+                    currentDirection = Vector3.Right;
+                }
+                else if (currentDirection.Equals(Vector3.Left))
+                {
+                    currentDirection = Vector3.Forward;
+                }
+                else if (currentDirection.Equals(Vector3.Right))
+                {
+                    currentDirection = Vector3.Backward;
+                }
+            }
         }
 
         public void addTailPiece()

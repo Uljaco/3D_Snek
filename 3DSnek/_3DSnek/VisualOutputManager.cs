@@ -49,14 +49,14 @@ namespace _3DSnek
         {
             graphics.GraphicsDevice.Clear(Color.Aquamarine);//Set background color
             setCamera(player);
-            drawModel(snakeHeadModel, Vector3.Zero, rotation += .05f, Color.Yellow.ToVector3());// Color.BlanchedAlmond.ToVector3());
-            drawModel(snekTextSquareModel, Vector3.Zero, Color.BlanchedAlmond.ToVector3());
+            drawModel(snakeHeadModel, player.coords, rotation += .05f, Color.Yellow.ToVector3());// Color.BlanchedAlmond.ToVector3());
+            drawModel(snekTextSquareModel, Vector3.Zero, -rotation, Color.BlanchedAlmond.ToVector3());
             drawModel(arenaModel, Vector3.Zero, Color.White.ToVector3());
         }
 
         private void setCamera(Player player)//maybe just for testing, until we add player camera control, this camera will just follow the player
         {
-
+            
         }
 
         private void drawModel(Model model, Vector3 modelPosition, Vector3 color)

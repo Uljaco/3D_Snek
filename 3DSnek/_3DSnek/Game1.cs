@@ -38,8 +38,8 @@ namespace _3DSnek
 
             collisionDetector = new ColllisionDetector();
             inputManager = new InputManager();
-            player = new Player();
-            bounds.set(1,1,20,20);//size of the map's grid
+            bounds.set(1, 1, 20, 20);//size of the map's grid
+            player = new Player(bounds);
             pointSystem = new PointSystem();
             visualOutputManager = new VisualOutputManager(graphics, Content);
             gameTickTimer = 0;
@@ -76,12 +76,14 @@ namespace _3DSnek
                 this.Exit();
 
             // TODO: Add your update logic 
-            inputManager.manageInput(player);//player can always change direction/camera
-
+            inputManager.handleCameraControl(player);
             gameTickTimer += gameTime.ElapsedGameTime.Milliseconds;//accumulate time until we can update again
             if (gameTickTimer > 600)//If it has been long enough since last update
             {
+
+                inputManager.handleMotionControl(player);//player can always change direction/camera
                 //Move the snake and check for collisions
+                player.move();
                 //if player dies, trigger the "You Lost" event sequence
 
                 gameTickTimer = 0; //reset for timing the next gameTick

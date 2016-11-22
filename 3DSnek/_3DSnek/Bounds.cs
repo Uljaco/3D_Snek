@@ -1,4 +1,4 @@
-﻿struct Bounds
+﻿public struct Bounds
 {
     int xmax { get; set; }
     int ymax { get; set; }
