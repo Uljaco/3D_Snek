@@ -7,7 +7,7 @@ namespace _3DSnek
 {
     class ColllisionDetector
     {
-        public bool checkAgainstTail(Player player, LinkedList<TailPiece> tail)
+        public bool checkAgainstTail(Player player)//, LinkedList<TailPiece> tail)
         {
             return false;
         }
@@ -17,7 +17,7 @@ namespace _3DSnek
             return false;
         }
 
-        public bool checkAgainstWalls(Player player)//, Bounds bounds)
+        public bool checkAgainstWalls(Player player, Bounds bounds)
         {
             return false;
         }

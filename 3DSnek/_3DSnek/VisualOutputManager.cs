@@ -31,7 +31,7 @@ namespace _3DSnek
             graphics.ApplyChanges();//need to explicitly apply the changes since we are outside the Game constructor
 
             cameraLookAt = Vector3.Zero;//origin
-            cameraPosition = new Vector3(700, 500, -400);
+            cameraPosition = new Vector3(0, 800, 4200);//new Vector3(700, 500, -400);
 
             loadModels();
         }
@@ -45,12 +45,18 @@ namespace _3DSnek
             arenaModel = Content.Load<Model>("Models/arena");
         }
 
-        public void draw(GameTime gameTime)
+        public void draw(Player player)
         {
             graphics.GraphicsDevice.Clear(Color.Aquamarine);//Set background color
+            setCamera(player);
             drawModel(snakeHeadModel, Vector3.Zero, rotation += .05f, Color.Yellow.ToVector3());// Color.BlanchedAlmond.ToVector3());
             drawModel(snekTextSquareModel, Vector3.Zero, Color.BlanchedAlmond.ToVector3());
             drawModel(arenaModel, Vector3.Zero, Color.White.ToVector3());
+        }
+
+        private void setCamera(Player player)//maybe just for testing, until we add player camera control, this camera will just follow the player
+        {
+
         }
 
         private void drawModel(Model model, Vector3 modelPosition, Vector3 color)

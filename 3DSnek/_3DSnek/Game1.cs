@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace _3DSnek
 {
@@ -13,8 +14,10 @@ namespace _3DSnek
         ColllisionDetector collisionDetector;
         InputManager inputManager;
         Player player;
+        Bounds bounds;
         VisualOutputManager visualOutputManager;
         PointSystem pointSystem;
+        double gameTickTimer;
 
         public Game1()
         {
@@ -36,8 +39,10 @@ namespace _3DSnek
             collisionDetector = new ColllisionDetector();
             inputManager = new InputManager();
             player = new Player();
+            bounds.set(1,1,20,20);//size of the map's grid
             pointSystem = new PointSystem();
             visualOutputManager = new VisualOutputManager(graphics, Content);
+            gameTickTimer = 0;
         }
 
         /// <summary>
@@ -70,9 +75,18 @@ namespace _3DSnek
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // TODO: Add your update logic here
-            inputManager.manageInput(player);
+            // TODO: Add your update logic 
+            inputManager.manageInput(player);//player can always change direction/camera
 
+            gameTickTimer += gameTime.ElapsedGameTime.Milliseconds;//accumulate time until we can update again
+            if (gameTickTimer > 600)//If it has been long enough since last update
+            {
+                //Move the snake and check for collisions
+                //if player dies, trigger the "You Lost" event sequence
+
+                gameTickTimer = 0; //reset for timing the next gameTick
+            }
+            
             base.Update(gameTime);
         }
 
@@ -85,7 +99,7 @@ namespace _3DSnek
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            visualOutputManager.draw(gameTime);
+            visualOutputManager.draw(player);
 
             base.Draw(gameTime);
         }

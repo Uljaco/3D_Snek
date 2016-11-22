@@ -57,6 +57,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bounds.cs" />
     <Compile Include="CollisionDetector.cs" />
     <Compile Include="InputManager.cs" />
     <Compile Include="Player.cs" />

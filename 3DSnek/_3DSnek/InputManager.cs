@@ -1,16 +1,15 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace _3DSnek
 {
     class InputManager
     {
+
         public void manageInput(Player player)
         {
-            //Process input and/or delegate to appropriate private methods?
             handleMotionControl(player);
             handleCameraControl(player);
         }
@@ -22,6 +21,15 @@ namespace _3DSnek
         {
             KeyboardState keyboardState = Keyboard.GetState();
             //Just turning left and right -> Just A and D keys?
+            Keys [] keys = keyboardState.GetPressedKeys();
+            if (keys.Contains<Keys>(Keys.A))
+            {
+                Console.Out.WriteLine("Pressed A");
+            }
+            else if (keys.Contains<Keys>(Keys.D))
+            {
+                Console.Out.WriteLine("Pressed D");
+            }
         }
 
         /// <summary>
