@@ -1,32 +1,42 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace _3DSnek
 {
     public class Player
     {
         public Vector3 coords { get; set; }   //xyz coordinates, maybe just need xz if we keep y uniform, but keeping in 3d vector might make it easier to compute?
-        LinkedList<TailPiece> tail { get; } //contains the player's recent previous locations (which are the current locations of the tail)
+        public LinkedList<TailPiece> tail { get; } //contains the player's recent previous locations (which are the current locations of the tail)
         //TailPiece as opposed to just xy coordinates because we might want to make different tail pieces appear differently
         //but maybe even then we could use just xy and implement the different appearance as function of how long the tail is to begin with
-        Vector3 currentDirection { get; set; }   //player's current velocity/motion vector
-        //int tailLength? just tail.length
-        private int gridSpaceFactor;//the dist from one grid location to the next (displacement when moving)
+        private Vector3 currentDirection; //player's current velocity/motion vector
+        private int gridSpaceFactor; //the dist from one grid location to the next (displacement when moving)
 
         public Player(int gridSpaceFactor)
         {
-            //Player spawns in middle of map
-            coords = Vector3.Zero;
-            currentDirection = Vector3.Backward;
+            coords = Vector3.Zero;//player spawns in middle of map
+            currentDirection = Vector3.Backward;//moving towards the camera
+            tail = new LinkedList<TailPiece>();
             this.gridSpaceFactor = gridSpaceFactor;
         }
 
-        public void move()//Vector3 movementVector)
+        public void move()
         {
             //update player and tail coordinates
+            LinkedListNode<TailPiece> currentTailPiece = tail.Last;
+            while (currentTailPiece != null)
+            {
+                if(currentTailPiece.Previous != null)
+                {
+                    currentTailPiece.Value.coords = currentTailPiece.Previous.Value.coords;
+                    currentTailPiece = currentTailPiece.Previous;
+                }
+                else
+                {
+                    currentTailPiece.Value.coords = coords;
+                    break;
+                }
+            }
             coords += currentDirection * gridSpaceFactor;
         }
 
@@ -75,14 +85,14 @@ namespace _3DSnek
 
         public void addTailPiece()
         {
-            
+            tail.AddLast(new TailPiece(coords));
         }
 
     }
 
-    class TailPiece
+    public class TailPiece
     {
-        Vector3 coords { set; get; }
+        public Vector3 coords { set; get; }
 
         public TailPiece(Vector3 coordinates)
         {

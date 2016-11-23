@@ -13,15 +13,15 @@ namespace _3DSnek
         public void handleMotionControl(Player player)
         {
             KeyboardState keyboardState = Keyboard.GetState();
-            //Just turning left and right -> Just A and D keys?
+            //Just turning left and right -> Just A and D keys
             Keys [] keys = keyboardState.GetPressedKeys();
             if (keys.Contains<Keys>(Keys.A))
             {
-                player.changeDirection(true);//left
+                player.changeDirection(true);//turn left
             }
             else if (keys.Contains<Keys>(Keys.D))
             {
-                player.changeDirection(false);//right
+                player.changeDirection(false);//turn right
             }
         }
 

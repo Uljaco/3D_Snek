@@ -11,6 +11,9 @@ namespace _3DSnek
             gridSpaceFactor = newSpaceFactor;
         }
 
+        /// <summary>
+        /// Return true if the player has collided with its own tail.
+        /// </summary>
         public bool checkAgainstTail(Player player)
         {
             return false;

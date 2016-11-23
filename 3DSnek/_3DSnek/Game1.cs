@@ -95,6 +95,7 @@ namespace _3DSnek
                 {
                     Console.Out.WriteLine("Collected food yo");
                     setFoodPosition();
+                    player.addTailPiece();
                 }
 
                 gameTickTimer = 0; //reset for timing the next gameTick
@@ -111,7 +112,6 @@ namespace _3DSnek
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);//could replace with black when player has died lel
 
-            // TODO: Add your drawing code here
             visualOutputManager.draw(player, foodLocation);
 
             base.Draw(gameTime);
@@ -122,8 +122,9 @@ namespace _3DSnek
             int newx, newz;
             newx = rand.Next(bounds.xmin, bounds.xmax + 1);
             newz = rand.Next(bounds.zmin, bounds.zmax + 1);
-            Console.WriteLine(newx + "    " + newz);
-            //ADD checking to make sure the player and its tail are not in the way
+            // TODO: checking to make sure the player and its tail are not in the way
+
+
             foodLocation = new Vector3(newx * gridSpaceFactor, 0, newz * gridSpaceFactor);
         }
     }
