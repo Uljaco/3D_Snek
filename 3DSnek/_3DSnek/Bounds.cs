@@ -1,15 +1,15 @@
 ﻿public struct Bounds
 {
-    int xmax { get; set; }
-    int ymax { get; set; }
-    int xmin { get; set; }
-    int ymin { get; set; }
+    public int xmax { get; set; }
+    public int zmax { get; set; }
+    public int xmin { get; set; }
+    public int zmin { get; set; }
 
-    public void set(int newXMax, int newXMin, int newYMax, int newYMin)
+    public void set(int newXMax, int newXMin, int newZMax, int newZMin)
     {
         xmax = newXMax;
         xmin = newXMin;
-        ymax = newYMax;
-        ymin = newYMin;
+        zmax = newZMax;
+        zmin = newZMin;
     }
 }

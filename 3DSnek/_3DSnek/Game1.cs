@@ -17,7 +17,8 @@ namespace _3DSnek
         Bounds bounds;
         VisualOutputManager visualOutputManager;
         PointSystem pointSystem;
-        double gameTickTimer;
+        double gameTickTimer;//used for determining when a game tick should happen
+        private int gridSpaceFactor;//the dist from one grid location to the next (displacement when player moves)
 
         public Game1()
         {
@@ -35,14 +36,16 @@ namespace _3DSnek
         {
             // TODO: Add your initialization logic here
             base.Initialize();
-
-            collisionDetector = new ColllisionDetector();
+            gridSpaceFactor = 140;
+            player = new Player(gridSpaceFactor);
+            collisionDetector = new ColllisionDetector(gridSpaceFactor);
             inputManager = new InputManager();
-            bounds.set(1, 1, 20, 20);//size of the map's grid
-            player = new Player(120);
+            bounds.set(13, -13, 13, -13);//boundaries of the map grid
+            
             pointSystem = new PointSystem();
             visualOutputManager = new VisualOutputManager(graphics, Content);
             gameTickTimer = 0;
+            
         }
 
         /// <summary>
@@ -84,6 +87,10 @@ namespace _3DSnek
                 inputManager.handleMotionControl(player);//player can always change direction/camera
                 //Move the snake and check for collisions
                 player.move();
+                if(collisionDetector.checkAgainstWalls(player, bounds))
+                {
+                    Console.Out.WriteLine("Player hit wall and DIED");
+                }
                 //if player dies, trigger the "You Lost" event sequence
 
                 gameTickTimer = 0; //reset for timing the next gameTick
