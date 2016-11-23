@@ -15,8 +15,13 @@ namespace _3DSnek
 
         private Model snekTextModel, snekTextSquareModel, snakeHeadModel, arenaModel;
 
-        private Vector3 cameraPosition, cameraLookAt;
+        public Vector3 cameraPosition { set; get; }
+        public Vector3 cameraLookAt { set; get; }
         private float rotation = 0f;//just for testing
+
+        public float zoomFactor { set; get; } = 1f; 
+        public float yaw { set; get; } = 1f;
+        public float pitch { set; get; } = 1f;
 
         public VisualOutputManager(GraphicsDeviceManager gdm, ContentManager content)
         {
@@ -49,17 +54,16 @@ namespace _3DSnek
             setCamera(player);
             drawPlayer(player);
             drawModel(snekTextModel, foodLocation, rotation, Color.White.ToVector3());
-            drawModel(snekTextSquareModel, Vector3.Up*700, -rotation, 2.5f, Color.BlanchedAlmond.ToVector3());
+            //drawModel(snekTextSquareModel, Vector3.Up*700, -rotation, 2.5f, Color.BlanchedAlmond.ToVector3());//regular, easy to read
+            //drawModel(snekTextSquareModel, Vector3.Up * 700, -rotation, (float)Math.Sin(System.Environment.TickCount) + 3.5f, Color.BlanchedAlmond.ToVector3());//super uigi mode
+            drawModel(snekTextSquareModel, Vector3.Up * 700, -rotation, (float)Math.Sin(System.Environment.TickCount/100) + 3.5f, Color.BlanchedAlmond.ToVector3());
             drawModel(arenaModel, Vector3.Zero, Color.White.ToVector3());
         }
 
         private void drawPlayer(Player player)
         {
-            drawModel(snakeHeadModel, player.coords, rotation += .05f, Color.Yellow.ToVector3());// Color.BlanchedAlmond.ToVector3());
-
-            //TEST SCALE
-            drawModel(snakeHeadModel, Vector3.Up * 200, 0f, .5f, Color.White.ToVector3());
-
+            drawModel(snakeHeadModel, player.coords, rotation += .05f, Color.Yellow.ToVector3());//Draw the head
+         
             if (player.tail.Count != 0)//if there is a tail, then draw it
             {
                 float scale = 1f;

@@ -80,7 +80,7 @@ namespace _3DSnek
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
         
-            inputManager.handleCameraControl(player);
+            inputManager.handleCameraControl(player, visualOutputManager);
             gameTickTimer += gameTime.ElapsedGameTime.Milliseconds;//accumulate time until we can update again
             if (gameTickTimer > 300)//If it has been long enough since last update
             {
@@ -121,15 +121,24 @@ namespace _3DSnek
             base.Draw(gameTime);
         }
 
+        /// <summary>
+        /// Set the new food to a valid position.
+        /// </summary>
         private void setFoodPosition()
         {
             int newx, newz;
             newx = rand.Next(bounds.xmin, bounds.xmax + 1);
             newz = rand.Next(bounds.zmin, bounds.zmax + 1);
-            // TODO: checking to make sure the player and its tail are not in the way
+            Vector3 newFoodPosition = new Vector3(newx * gridSpaceFactor, 0, newz * gridSpaceFactor);
 
+            while(!collisionDetector.validFoodPosition(player, newFoodPosition))//until the rng provides a valid food location (a bad implementation lel)
+            {
+                newx = rand.Next(bounds.xmin, bounds.xmax + 1);
+                newz = rand.Next(bounds.zmin, bounds.zmax + 1);
+                newFoodPosition = new Vector3(newx * gridSpaceFactor, 0, newz * gridSpaceFactor);
+            }
 
-            foodLocation = new Vector3(newx * gridSpaceFactor, 0, newz * gridSpaceFactor);
+            foodLocation = newFoodPosition;
         }
     }
 }

@@ -54,5 +54,27 @@ namespace _3DSnek
             }
             return false;
         }
+
+        /// <summary>
+        /// Return true if the foodLocation is the same as any player/tail location.
+        /// </summary>
+        public bool validFoodPosition(Player player, Vector3 foodLocation)
+        {
+            if (checkIfCollectingFood(player, foodLocation))//if food collides with player head
+            {
+                return false;//then it's not a valid food position
+            }
+
+            LinkedListNode<TailPiece> currentTailPiece = player.tail.First;
+            while (currentTailPiece != null)
+            {
+                if (foodLocation.Equals(currentTailPiece.Value.coords))//if food coords are same as the current tail piece's coords
+                {
+                    return false;//then it's not a valid food position
+                }
+                currentTailPiece = currentTailPiece.Next;
+            }
+            return true;
+        }
     }
 }
