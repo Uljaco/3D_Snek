@@ -39,7 +39,7 @@ namespace _3DSnek
             collisionDetector = new ColllisionDetector();
             inputManager = new InputManager();
             bounds.set(1, 1, 20, 20);//size of the map's grid
-            player = new Player(bounds);
+            player = new Player(120);
             pointSystem = new PointSystem();
             visualOutputManager = new VisualOutputManager(graphics, Content);
             gameTickTimer = 0;

@@ -17,22 +17,20 @@ namespace _3DSnek
             Keys [] keys = keyboardState.GetPressedKeys();
             if (keys.Contains<Keys>(Keys.A))
             {
-                Console.Out.WriteLine("Pressed A");
                 player.changeDirection(true);//left
             }
             else if (keys.Contains<Keys>(Keys.D))
             {
-                Console.Out.WriteLine("Pressed D");
                 player.changeDirection(false);//right
             }
         }
 
         /// <summary>
-        /// Rotate and angle camera based on mouse?
+        /// Rotate and angle camera based on mouse? Probably easier to use arrow keys for this
         /// </summary>
         public void handleCameraControl(Player player)//maybe camera control only needs player's current direction? not whole object reference
         {
-            MouseState mouseState = Mouse.GetState();
+            MouseState mouseState = Mouse.GetState();//or use arrow keys
 
         }
     }

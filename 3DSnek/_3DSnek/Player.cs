@@ -14,21 +14,26 @@ namespace _3DSnek
         //but maybe even then we could use just xy and implement the different appearance as function of how long the tail is to begin with
         Vector3 currentDirection { get; set; }   //player's current velocity/motion vector
         //int tailLength? just tail.length
+        private int gridSpaceFactor;//the dist from one grid location to the next (displacement when moving)
 
-        public Player(Bounds bounds)
+        public Player(int gridSpaceFactor)
         {
-            //Player spawns in middle of map (within bounds)
+            //Player spawns in middle of map
             coords = Vector3.Zero;
             currentDirection = Vector3.Backward;
+            this.gridSpaceFactor = gridSpaceFactor;
         }
 
         public void move()//Vector3 movementVector)
         {
             //update player and tail coordinates
-            coords += currentDirection * 100;//replace 100 with a factor that will be used uniformly across the class for clear 
-                                            //the 100 represents the size of one spot in the grid
+            coords += currentDirection * gridSpaceFactor;
         }
 
+        /// <summary>
+        /// Change the player's current direction. Take a boolean (true if turning left, false if right) and update player's direction
+        /// based on the previous currentDirection and which way they are turning.
+        /// </summary>
         public void changeDirection(bool toLeft)//if not to the left, then it is to the right (can only change direction in 2 ways L/R)
         {
             if (toLeft)//if turning LEFT
