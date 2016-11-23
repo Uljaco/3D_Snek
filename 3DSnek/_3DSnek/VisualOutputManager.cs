@@ -119,6 +119,33 @@ namespace _3DSnek
                 mesh.Draw();
             }
         }
+        private void drawModel(Model model, Vector3 modelPosition, float rotation, float scale, Vector3 color)
+        {
+            // Copy any parent transforms.
+            Matrix[] transforms = new Matrix[model.Bones.Count];
+            model.CopyAbsoluteBoneTransformsTo(transforms);
+            foreach (ModelMesh mesh in model.Meshes)
+            {
+                // This is where the mesh orientation is set, as well 
+                // as our camera and projection.
+                foreach (BasicEffect effect in mesh.Effects)
+                {   //TO-DO: precalculate anything that does not change
+                    effect.EnableDefaultLighting();
+                    effect.DiffuseColor = color;
+                    effect.DirectionalLight0.Direction = new Vector3(0f, 0.0f, 0.0f);
+                    effect.World = transforms[mesh.ParentBone.Index]
+                        * Matrix.CreateScale(scale)
+                        * Matrix.CreateRotationY(rotation)
+                        * Matrix.CreateTranslation(modelPosition);//change the position of the model in the world
+                    effect.View = Matrix.CreateLookAt(cameraPosition, cameraLookAt, Vector3.Up); //change the position and direction of the camera
+                    effect.Projection = Matrix.CreatePerspectiveFieldOfView(
+                        MathHelper.ToRadians(45.0f), aspectRatio,
+                        1.0f, 10000.0f);//control how the view of the 3D world is turned into a 2D image
+                }
+                // Draw the mesh, using the effects set above.
+                mesh.Draw();
+            }
+        }
 
     }
 }

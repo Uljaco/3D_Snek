@@ -85,7 +85,15 @@ namespace _3DSnek
 
         public void addTailPiece()
         {
-            tail.AddLast(new TailPiece(coords));
+            if (tail.Last == null)
+            {
+                tail.AddLast(new TailPiece(coords));
+            }
+            else
+            {
+                tail.AddLast(new TailPiece(tail.Last.Value.coords));
+            }
+            
         }
 
     }
