@@ -20,6 +20,9 @@ namespace _3DSnek
             this.gridSpaceFactor = gridSpaceFactor;
         }
 
+        /// <summary>
+        /// Move the player and its tail through the world space.
+        /// </summary>
         public void move()
         {
             //update player and tail coordinates
@@ -28,16 +31,16 @@ namespace _3DSnek
             {
                 if(currentTailPiece.Previous != null)
                 {
-                    currentTailPiece.Value.coords = currentTailPiece.Previous.Value.coords;
+                    currentTailPiece.Value.coords = currentTailPiece.Previous.Value.coords;//each tail piece is moved to the 'old' place of its preceding piece
                     currentTailPiece = currentTailPiece.Previous;
                 }
-                else
+                else//if this is the tail piece right behind the head,
                 {
-                    currentTailPiece.Value.coords = coords;
-                    break;
+                    currentTailPiece.Value.coords = coords;//then give it the coords of the head
+                    break;//and exit the loop immediately
                 }
             }
-            coords += currentDirection * gridSpaceFactor;
+            coords += currentDirection * gridSpaceFactor;//move the player's head
         }
 
         /// <summary>
@@ -83,6 +86,9 @@ namespace _3DSnek
             }
         }
 
+        /// <summary>
+        /// Append a tail piece to the end of the player's tail. Places new segment in same spot as tail's previous end.
+        /// </summary>
         public void addTailPiece()
         {
             if (tail.Last == null)
@@ -93,7 +99,6 @@ namespace _3DSnek
             {
                 tail.AddLast(new TailPiece(tail.Last.Value.coords));
             }
-            
         }
 
     }

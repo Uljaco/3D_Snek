@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace _3DSnek
 {
@@ -16,6 +17,16 @@ namespace _3DSnek
         /// </summary>
         public bool checkAgainstTail(Player player)
         {
+            Vector3 pcoords = player.coords;
+            LinkedListNode<TailPiece> currentTailPiece = player.tail.First;
+            while (currentTailPiece != null)
+            {
+                if (pcoords.Equals(currentTailPiece.Value.coords))//if player coords are same as the current tail piece's coords
+                {
+                    return true;
+                }
+                currentTailPiece = currentTailPiece.Next;
+            }
             return false;
         }
 

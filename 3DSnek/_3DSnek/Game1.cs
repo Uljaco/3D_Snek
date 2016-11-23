@@ -91,6 +91,10 @@ namespace _3DSnek
                 {
                     Console.Out.WriteLine("Player hit wall and DIED");
                 }
+                if (collisionDetector.checkAgainstTail(player))//this check needs to happen before checking food collection so that adding first tail piece does not cause this to return true
+                {
+                    Console.Out.WriteLine("Play ran into its tail");
+                }
                 if (collisionDetector.checkIfCollectingFood(player, foodLocation))
                 {
                     Console.Out.WriteLine("Collected food yo");

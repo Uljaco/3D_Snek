@@ -49,7 +49,7 @@ namespace _3DSnek
             setCamera(player);
             drawPlayer(player);
             drawModel(snekTextModel, foodLocation, rotation, Color.White.ToVector3());
-            drawModel(snekTextSquareModel, Vector3.Up*600, -rotation, Color.BlanchedAlmond.ToVector3());
+            drawModel(snekTextSquareModel, Vector3.Up*700, -rotation, 2.5f, Color.BlanchedAlmond.ToVector3());
             drawModel(arenaModel, Vector3.Zero, Color.White.ToVector3());
         }
 
