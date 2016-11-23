@@ -45,11 +45,12 @@ namespace _3DSnek
             arenaModel = Content.Load<Model>("Models/arena");
         }
 
-        public void draw(Player player)
+        public void draw(Player player, Vector3 foodLocation)
         {
             graphics.GraphicsDevice.Clear(Color.Aquamarine);//Set background color
             setCamera(player);
             drawModel(snakeHeadModel, player.coords, rotation += .05f, Color.Yellow.ToVector3());// Color.BlanchedAlmond.ToVector3());
+            drawModel(snekTextModel, foodLocation, rotation, Color.White.ToVector3());
             drawModel(snekTextSquareModel, Vector3.Zero, -rotation, Color.BlanchedAlmond.ToVector3());
             drawModel(arenaModel, Vector3.Zero, Color.White.ToVector3());
         }

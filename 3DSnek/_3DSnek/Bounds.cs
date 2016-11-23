@@ -1,15 +1,18 @@
-﻿public struct Bounds
+﻿namespace _3DSnek
 {
-    public int xmax { get; set; }
-    public int zmax { get; set; }
-    public int xmin { get; set; }
-    public int zmin { get; set; }
-
-    public void set(int newXMax, int newXMin, int newZMax, int newZMin)
+    public struct Bounds
     {
-        xmax = newXMax;
-        xmin = newXMin;
-        zmax = newZMax;
-        zmin = newZMin;
+        public int xmax { get; set; }
+        public int zmax { get; set; }
+        public int xmin { get; set; }
+        public int zmin { get; set; }
+
+        public void set(int newXMax, int newXMin, int newZMax, int newZMin)
+        {
+            xmax = newXMax;
+            xmin = newXMin;
+            zmax = newZMax;
+            zmin = newZMin;
+        }
     }
 }

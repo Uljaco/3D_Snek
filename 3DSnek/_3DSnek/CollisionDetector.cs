@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Xna.Framework;
 
 namespace _3DSnek
 {
@@ -14,13 +11,20 @@ namespace _3DSnek
             gridSpaceFactor = newSpaceFactor;
         }
 
-        public bool checkAgainstTail(Player player)//, LinkedList<TailPiece> tail)
+        public bool checkAgainstTail(Player player)
         {
             return false;
         }
 
-        public bool checkIfCollectingFood(Player player)//, Food food) do we want food to be represented just by a location on the grid?
+        /// <summary>
+        /// Return true if the player has collided with (and collected) a piece of food.
+        /// </summary>
+        public bool checkIfCollectingFood(Player player, Vector3 foodLocation)
         {
+            if (player.coords.Equals(foodLocation))
+            {
+                return true;
+            }
             return false;
         }
 

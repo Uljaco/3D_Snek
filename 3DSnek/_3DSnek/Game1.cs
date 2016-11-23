@@ -15,8 +15,10 @@ namespace _3DSnek
         InputManager inputManager;
         Player player;
         Bounds bounds;
+        Vector3 foodLocation;
         VisualOutputManager visualOutputManager;
         PointSystem pointSystem;
+        Random rand;
         double gameTickTimer;//used for determining when a game tick should happen
         private int gridSpaceFactor;//the dist from one grid location to the next (displacement when player moves)
 
@@ -36,16 +38,16 @@ namespace _3DSnek
         {
             // TODO: Add your initialization logic here
             base.Initialize();
+            rand = new Random();
             gridSpaceFactor = 140;
             player = new Player(gridSpaceFactor);
             collisionDetector = new ColllisionDetector(gridSpaceFactor);
             inputManager = new InputManager();
-            bounds.set(13, -13, 13, -13);//boundaries of the map grid
-            
+            bounds.set(13, -13, 13, -13);//boundaries of the map grid (might need to change these to 14 if it does not look right)
+            setFoodPosition();
             pointSystem = new PointSystem();
             visualOutputManager = new VisualOutputManager(graphics, Content);
             gameTickTimer = 0;
-            
         }
 
         /// <summary>
@@ -77,21 +79,23 @@ namespace _3DSnek
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
-
-            // TODO: Add your update logic 
+        
             inputManager.handleCameraControl(player);
             gameTickTimer += gameTime.ElapsedGameTime.Milliseconds;//accumulate time until we can update again
-            if (gameTickTimer > 600)//If it has been long enough since last update
+            if (gameTickTimer > 400)//If it has been long enough since last update
             {
-
-                inputManager.handleMotionControl(player);//player can always change direction/camera
+                inputManager.handleMotionControl(player);//player must be holding key down in the appropriate cycle for it to be processed
                 //Move the snake and check for collisions
                 player.move();
-                if(collisionDetector.checkAgainstWalls(player, bounds))
+                if (collisionDetector.checkAgainstWalls(player, bounds))
                 {
                     Console.Out.WriteLine("Player hit wall and DIED");
                 }
-                //if player dies, trigger the "You Lost" event sequence
+                if (collisionDetector.checkIfCollectingFood(player, foodLocation))
+                {
+                    Console.Out.WriteLine("Collected food yo");
+                    setFoodPosition();
+                }
 
                 gameTickTimer = 0; //reset for timing the next gameTick
             }
@@ -105,12 +109,22 @@ namespace _3DSnek
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.CornflowerBlue);//could replace with black when player has died lel
 
             // TODO: Add your drawing code here
-            visualOutputManager.draw(player);
+            visualOutputManager.draw(player, foodLocation);
 
             base.Draw(gameTime);
+        }
+
+        private void setFoodPosition()
+        {
+            int newx, newz;
+            newx = rand.Next(bounds.xmin, bounds.xmax + 1);
+            newz = rand.Next(bounds.zmin, bounds.zmax + 1);
+            Console.WriteLine(newx + "    " + newz);
+            //ADD checking to make sure the player and its tail are not in the way
+            foodLocation = new Vector3(newx * gridSpaceFactor, 0, newz * gridSpaceFactor);
         }
     }
 }
