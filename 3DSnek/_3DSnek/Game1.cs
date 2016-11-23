@@ -82,7 +82,7 @@ namespace _3DSnek
         
             inputManager.handleCameraControl(player);
             gameTickTimer += gameTime.ElapsedGameTime.Milliseconds;//accumulate time until we can update again
-            if (gameTickTimer > 400)//If it has been long enough since last update
+            if (gameTickTimer > 300)//If it has been long enough since last update
             {
                 inputManager.handleMotionControl(player);//player must be holding key down in the appropriate cycle for it to be processed
                 //Move the snake and check for collisions

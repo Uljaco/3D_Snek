@@ -56,11 +56,21 @@ namespace _3DSnek
         private void drawPlayer(Player player)
         {
             drawModel(snakeHeadModel, player.coords, rotation += .05f, Color.Yellow.ToVector3());// Color.BlanchedAlmond.ToVector3());
-            LinkedListNode<TailPiece> currentTailPiece = player.tail.First;
-            while(currentTailPiece != null)
+
+            //TEST SCALE
+            drawModel(snakeHeadModel, Vector3.Up * 200, 0f, .5f, Color.White.ToVector3());
+
+            if (player.tail.Count != 0)//if there is a tail, then draw it
             {
-                drawModel(snakeHeadModel, currentTailPiece.Value.coords, Color.White.ToVector3());
-                currentTailPiece = currentTailPiece.Next;
+                float scale = 1f;
+                float scaleInterval = 1f / (player.tail.Count + 1f);//choose a rate for the tail piece sizes to decrease the closer they are to the end
+                LinkedListNode<TailPiece> currentTailPiece = player.tail.First;
+                while (currentTailPiece != null)
+                {
+                    drawModel(snakeHeadModel, currentTailPiece.Value.coords, 0f, Math.Max(scale, .5f), Color.White.ToVector3());//scale down, but not too small
+                    scale -= scaleInterval;
+                    currentTailPiece = currentTailPiece.Next;
+                }
             }
         }
 
