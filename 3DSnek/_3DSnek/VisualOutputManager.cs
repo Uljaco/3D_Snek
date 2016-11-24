@@ -19,7 +19,7 @@ namespace _3DSnek
         public Vector3 cameraLookAt { set; get; }
         private float rotation = 0f;//just for testing
 
-        public float zoomFactor { set; get; } = 1f; 
+        public float zoomFactor { set; get; } = 6000f; 
         public float yaw { set; get; } = 1f;
         public float pitch { set; get; } = 1f;
 

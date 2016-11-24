@@ -49,9 +49,17 @@ namespace _3DSnek
             {
                 vom.pitch -= .03f;
             }
+            if (keys.Contains<Keys>(Keys.W))
+            {
+                vom.zoomFactor -= 10f;
+            }
+            else if (keys.Contains<Keys>(Keys.S))
+            {
+                vom.zoomFactor += 10f;
+            }
             //Refactor this stuff over to the VisualOutputManager class
             Vector3 position = Vector3.Transform(Vector3.Backward, Matrix.CreateFromYawPitchRoll(vom.yaw, vom.pitch, 0f));
-            position *= 6000f;
+            position *= vom.zoomFactor;// 6000f;
             position += vom.cameraLookAt;
 
             vom.cameraPosition = position;
