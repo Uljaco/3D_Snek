@@ -80,7 +80,7 @@ namespace _3DSnek
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
         
-            inputManager.handleCameraControl(player, visualOutputManager);
+            inputManager.handleCameraControl(visualOutputManager);
             gameTickTimer += gameTime.ElapsedGameTime.Milliseconds;//accumulate time until we can update again
             if (gameTickTimer > 300)//If it has been long enough since last update
             {

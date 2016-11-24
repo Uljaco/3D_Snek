@@ -83,6 +83,17 @@ namespace _3DSnek
             
         }
 
+        public void updateCamera(float yawChange, float pitchChange, float zoomChange)
+        {
+            yaw += yawChange;
+            pitch += pitchChange;
+            zoomFactor += zoomChange;
+
+            cameraPosition = Vector3.Transform(Vector3.Backward, Matrix.CreateFromYawPitchRoll(yaw, pitch, 0f));
+            cameraPosition *= zoomFactor;
+            cameraPosition += cameraLookAt;
+        }
+
         private void drawModel(Model model, Vector3 modelPosition, Vector3 color)
         {
             // Copy any parent transforms.

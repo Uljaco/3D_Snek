@@ -26,43 +26,40 @@ namespace _3DSnek
         }
 
         /// <summary>
-        /// Rotate and angle camera based on mouse? Probably easier to use arrow keys for this
+        /// Rotate and angle camera based on keyboard input
         /// </summary>
-        public void handleCameraControl(Player player, VisualOutputManager vom)//maybe camera control only needs player's current direction? not whole object reference
+        public void handleCameraControl(VisualOutputManager vom)
         {
             //MouseState mouseState = Mouse.GetState();//or use arrow keys
             Keys[] keys = Keyboard.GetState().GetPressedKeys();
-            
+            float   yawChange = 0,
+                    pitchChange = 0,
+                    zoomChange = 0;
             if (keys.Contains<Keys>(Keys.Left))
             {
-                vom.yaw += .05f;
+                yawChange = .05f;
             }
             else if (keys.Contains<Keys>(Keys.Right))
             {
-                vom.yaw -= .05f;
+                yawChange = -.05f;
             }
             if (keys.Contains<Keys>(Keys.Up))
             {
-                vom.pitch += .03f;
+                pitchChange = .03f;
             }
             else if (keys.Contains<Keys>(Keys.Down))
             {
-                vom.pitch -= .03f;
+                pitchChange = -.03f;
             }
             if (keys.Contains<Keys>(Keys.W))
             {
-                vom.zoomFactor -= 10f;
+                zoomChange = -10f;
             }
             else if (keys.Contains<Keys>(Keys.S))
             {
-                vom.zoomFactor += 10f;
+                zoomChange = 10f;
             }
-            //Refactor this stuff over to the VisualOutputManager class
-            Vector3 position = Vector3.Transform(Vector3.Backward, Matrix.CreateFromYawPitchRoll(vom.yaw, vom.pitch, 0f));
-            position *= vom.zoomFactor;// 6000f;
-            position += vom.cameraLookAt;
-
-            vom.cameraPosition = position;
+            vom.updateCamera(yawChange, pitchChange, zoomChange);
         }
     }
 }
