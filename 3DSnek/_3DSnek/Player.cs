@@ -9,8 +9,10 @@ namespace _3DSnek
         public LinkedList<TailPiece> tail { get; } //contains the player's recent previous locations (which are the current locations of the tail)
         //TailPiece as opposed to just xy coordinates because we might want to make different tail pieces appear differently
         //but maybe even then we could use just xy and implement the different appearance as function of how long the tail is to begin with
-        private Vector3 currentDirection; //player's current velocity/motion vector
+        public Vector3 currentDirection; //player's current velocity/motion vector
         private int gridSpaceFactor; //the dist from one grid location to the next (displacement when moving)
+        public bool goLeft,goRight;
+
 
         public Player(int gridSpaceFactor)
         {
@@ -18,6 +20,9 @@ namespace _3DSnek
             currentDirection = Vector3.Backward;//moving towards the camera
             tail = new LinkedList<TailPiece>();
             this.gridSpaceFactor = gridSpaceFactor;
+            goLeft = false;
+            goRight = false;
+
         }
 
         /// <summary>
@@ -51,6 +56,8 @@ namespace _3DSnek
         {
             if (toLeft)//if turning LEFT
             {
+                goLeft = true;
+                goRight = false;
                 if (currentDirection.Equals(Vector3.Backward))
                 {
                     currentDirection = Vector3.Right;
@@ -67,6 +74,8 @@ namespace _3DSnek
             }
             else//if turning RIGHT
             {
+                goRight = true;
+                goLeft = false;
                 if (currentDirection.Equals(Vector3.Backward))
                 {
                     currentDirection = Vector3.Left;
@@ -84,6 +93,8 @@ namespace _3DSnek
                     currentDirection = Vector3.Backward;
                 }
             }
+            //goRight = false;
+            //goLeft = false;
         }
 
         /// <summary>

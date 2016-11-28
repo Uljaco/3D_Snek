@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using System;
 
 namespace _3DSnek
 {
@@ -19,10 +20,14 @@ namespace _3DSnek
         {
             Vector3 pcoords = player.coords;
             LinkedListNode<TailPiece> currentTailPiece = player.tail.First;
+
+
             while (currentTailPiece != null)
             {
+                //Console.Out.WriteLine("--- Checking for Tail Collision ---");
                 if (pcoords.Equals(currentTailPiece.Value.coords))//if player coords are same as the current tail piece's coords
                 {
+                    ///Console.Out.WriteLine("--- Tail Collision! ---");
                     return true;
                 }
                 currentTailPiece = currentTailPiece.Next;
@@ -35,6 +40,7 @@ namespace _3DSnek
         /// </summary>
         public bool checkIfCollectingFood(Player player, Vector3 foodLocation)
         {
+            
             if (player.coords.Equals(foodLocation))
             {
                 return true;
