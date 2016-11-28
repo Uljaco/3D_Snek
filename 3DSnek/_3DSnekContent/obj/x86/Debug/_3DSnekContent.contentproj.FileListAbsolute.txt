@@ -1,0 +1,2 @@
+C:\Users\the_y\OneDrive\Documents\3D_Snek-master\3D_Snek-master\3DSnek\_3DSnekContent\obj\x86\Debug\_3DSnekContent.contentprojResolveAssemblyReference.cache
+C:\Users\the_y\Source\Repos\3D_Snek\3DSnek\_3DSnekContent\obj\x86\Debug\_3DSnekContent.contentprojResolveAssemblyReference.cache

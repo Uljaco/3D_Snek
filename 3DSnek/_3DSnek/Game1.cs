@@ -44,10 +44,13 @@ namespace _3DSnek
             collisionDetector = new ColllisionDetector(gridSpaceFactor);
             inputManager = new InputManager();
             bounds.set(13, -13, 13, -13);//boundaries of the map grid (might need to change these to 14 if it does not look right)
+            //bounds.set(10, -10, 10, -10);
             setFoodPosition();
             pointSystem = new PointSystem();
             visualOutputManager = new VisualOutputManager(graphics, Content);
             gameTickTimer = 0;
+            //System.Media.SoundPlayer startSoundPlayer2 = new System.Media.SoundPlayer(@"C:\Users\the_y\Music\ElevatorMusic.wav");
+            //startSoundPlayer2.Play();
         }
 
         /// <summary>
@@ -76,10 +79,12 @@ namespace _3DSnek
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            System.Media.SoundPlayer startSoundPlayer = new System.Media.SoundPlayer(@"C:\Users\the_y\Music\Bite1.wav");
+            System.Media.SoundPlayer startSoundPlayer2 = new System.Media.SoundPlayer(@"C:\Users\the_y\Music\whah.wav");
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
-        
+            int gameOver = 0;
             inputManager.handleCameraControl(visualOutputManager);
             gameTickTimer += gameTime.ElapsedGameTime.Milliseconds;//accumulate time until we can update again
             if (gameTickTimer > 300)//If it has been long enough since last update
@@ -89,14 +94,45 @@ namespace _3DSnek
                 player.move();
                 if (collisionDetector.checkAgainstWalls(player, bounds))
                 {
+                    //System.Windows.Forms.MessageBox.Show("Game Over! \nYou ran into a wall!");
                     Console.Out.WriteLine("Player hit wall and DIED");
+                    gameOver = 1;
                 }
                 if (collisionDetector.checkAgainstTail(player))//this check needs to happen before checking food collection so that adding first tail piece does not cause this to return true
                 {
+                    //System.Windows.Forms.MessageBox.Show("Game Over! \nYou ran into your tail!");
                     Console.Out.WriteLine("Play ran into its tail");
+                    gameOver = 1;
+                }
+                if(gameOver == 1)
+                {
+                    startSoundPlayer2.Play();
+                    //System.Windows.Forms.MessageBox.Show("Game Over");
+                    const string message = "                              GAME OVER!\nPress Retry to try again or Cancel to quit game";
+                    const string caption = "End Of Game";
+                    var result = System.Windows.Forms.MessageBox.Show(message, caption,
+                                                 System.Windows.Forms.MessageBoxButtons.RetryCancel,
+                                                 System.Windows.Forms.MessageBoxIcon.None);
+
+                    if (result == System.Windows.Forms.DialogResult.Cancel)
+                    {
+                        
+                        Exit();
+                    }
+
+                    if (result == System.Windows.Forms.DialogResult.Retry)
+                    {
+                        //System.Windows.Forms.Application.Restart();
+                        Program.ShouldRestart = true;
+                        this.Initialize();
+
+                    }
+
+                    gameOver = 0;
                 }
                 if (collisionDetector.checkIfCollectingFood(player, foodLocation))
                 {
+                    startSoundPlayer.Play();
                     Console.Out.WriteLine("Collected food yo");
                     setFoodPosition();
                     player.addTailPiece();

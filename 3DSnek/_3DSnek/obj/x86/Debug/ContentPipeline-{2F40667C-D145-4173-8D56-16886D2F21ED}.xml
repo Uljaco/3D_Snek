@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>Models\3DSnekSquareText.fbx</Source>
+      <Name>Models\3DSnekSquareText</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\the_y\Source\Repos\3D_Snek\3DSnek\_3DSnek\bin\x86\Debug\Content\Models\3DSnekSquareText.xnb</Output>
+      <Time>2016-11-26T02:44:17.098643-06:00</Time>
+      <Dependency>
+        <Key>C:\Users\the_y\Source\Repos\3D_Snek\3DSnek\_3DSnek\obj\x86\Debug\Models\3DSnekSquareText_0.xml</Key>
+        <Value>2016-11-27T21:34:27.6698026-06:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>Models\3DSnekText.fbx</Source>
+      <Name>Models\3DSnekText</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\the_y\Source\Repos\3D_Snek\3DSnek\_3DSnek\bin\x86\Debug\Content\Models\3DSnekText.xnb</Output>
+      <Time>2016-11-26T02:44:09.2302492-06:00</Time>
+      <Dependency>
+        <Key>C:\Users\the_y\Source\Repos\3D_Snek\3DSnek\_3DSnek\obj\x86\Debug\Models\3DSnekText_0.xml</Key>
+        <Value>2016-11-27T21:34:28.1111137-06:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>Models\snakeHead.fbx</Source>
+      <Name>Models\snakeHead</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\the_y\Source\Repos\3D_Snek\3DSnek\_3DSnek\bin\x86\Debug\Content\Models\snakeHead.xnb</Output>
+      <Time>2016-11-26T03:24:34.8360327-06:00</Time>
+      <Dependency>
+        <Key>C:\Users\the_y\Source\Repos\3D_Snek\3DSnek\_3DSnek\obj\x86\Debug\Models\snakeHead_0.xml</Key>
+        <Value>2016-11-27T21:34:28.2572174-06:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>Models\arena.fbx</Source>
+      <Name>Models\arena</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\the_y\Source\Repos\3D_Snek\3DSnek\_3DSnek\bin\x86\Debug\Content\Models\arena.xnb</Output>
+      <Time>2016-11-26T03:25:04.6052026-06:00</Time>
+      <Dependency>
+        <Key>C:\Users\the_y\Source\Repos\3D_Snek\3DSnek\_3DSnek\obj\x86\Debug\Models\arena_0.xml</Key>
+        <Value>2016-11-27T21:34:28.3387757-06:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>Models\mySnakeHead.fbx</Source>
+      <Name>Models\mySnakeHead</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\the_y\Source\Repos\3D_Snek\3DSnek\_3DSnek\bin\x86\Debug\Content\Models\mySnakeHead.xnb</Output>
+      <Time>2016-11-27T20:56:43.2389006-06:00</Time>
+      <Dependency>
+        <Key>C:\Users\the_y\Source\Repos\3D_Snek\3DSnek\_3DSnek\obj\x86\Debug\Models\mySnakeHead_0.xml</Key>
+        <Value>2016-11-27T21:34:28.4948865-06:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>Models\3DSnekSquareText.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>C:\Users\the_y\Source\Repos\3D_Snek\3DSnek\_3DSnek\obj\x86\Debug\Models\3DSnekSquareText_0.xml</Output>
+      <Time>2016-11-26T02:44:17.098643-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\3DSnekText.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>C:\Users\the_y\Source\Repos\3D_Snek\3DSnek\_3DSnek\obj\x86\Debug\Models\3DSnekText_0.xml</Output>
+      <Time>2016-11-26T02:44:09.2302492-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\snakeHead.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>C:\Users\the_y\Source\Repos\3D_Snek\3DSnek\_3DSnek\obj\x86\Debug\Models\snakeHead_0.xml</Output>
+      <Time>2016-11-26T03:24:34.8360327-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\arena.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>C:\Users\the_y\Source\Repos\3D_Snek\3DSnek\_3DSnek\obj\x86\Debug\Models\arena_0.xml</Output>
+      <Time>2016-11-26T03:25:04.6052026-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\mySnakeHead.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>C:\Users\the_y\Source\Repos\3D_Snek\3DSnek\_3DSnek\obj\x86\Debug\Models\mySnakeHead_0.xml</Output>
+      <Time>2016-11-27T20:56:43.2389006-06:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <ContentProjectGUID>{2F40667C-D145-4173-8D56-16886D2F21ED}</ContentProjectGUID>
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>Reach</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>C:\Users\the_y\Source\Repos\3D_Snek\3DSnek\_3DSnekContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\the_y\Source\Repos\3D_Snek\3DSnek\_3DSnek\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\the_y\Source\Repos\3D_Snek\3DSnek\_3DSnek\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\the_y\Source\Repos\3D_Snek\3DSnek\_3DSnek\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2011-09-01T17:22:30-05:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2011-09-01T17:22:30-05:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2011-09-01T17:22:30-05:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2011-09-01T17:22:30-05:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2011-09-01T17:22:30-05:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2011-09-01T17:22:30-05:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\WINDOWS\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2016-11-25T22:48:10.4609115-06:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>
